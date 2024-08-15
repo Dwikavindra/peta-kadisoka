@@ -20,13 +20,15 @@ function App() {
     rt6: true,
     rt7: true,
     rt8: true,
-    balai: true,
-    rumahPakDukuh: true,
-    tandaWilayah: true,
-    biara: true,
-    makedonia: true,
-    masjidAS: true,
-    masjidFat: true,
+    rt9: true,
+    rt10: true,
+    rt11: true,
+    rt12: true,
+    rt13: true,
+    rt14: true,
+    rt15: true,
+    rt16: true,
+    rumahDukuh: true,
   });
 
   const updatePlacemarks = (newChecked: boolean, routeName: string) => {
@@ -84,7 +86,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/dwikavindra/kadirojo2-kml/main/Kadirojo2.kml"
+      "https://raw.githubusercontent.com/dwikavindra/peta-kadisoka/main/Kadisoka.kml"
     )
       .then((res) => res.text())
       .then((kmlText) => {
@@ -92,6 +94,7 @@ function App() {
           if (err) {
             console.error("Error parsing XML:", err);
           } else {
+            console.log("Parsed json", JSON.stringify(result));
             setPlaceMarks(result.kml.Document[0].Folder[0].Placemark);
             setShownPlaceMarks(result.kml.Document[0].Folder[0].Placemark);
             setKmlJson(result);

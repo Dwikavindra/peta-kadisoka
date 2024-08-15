@@ -1319,9 +1319,15 @@
           </outerBoundaryIs>
         </Polygon>
       </Placemark>
-    </Folder>
-    <Folder>
-      <name>Kadisoka.kmz</name>
+      <Placemark>
+        <name>Rumah Dukuh</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            110.4464142,-7.7508874,0
+          </coordinates>
+        </Point>
+      </Placemark>
       <Placemark>
         <name>Kadisoka</name>
         <styleUrl>#poly-FF00FF-2000-0-nodesc</styleUrl>
@@ -1466,15 +1472,6 @@
             </LinearRing>
           </outerBoundaryIs>
         </Polygon>
-      </Placemark>
-      <Placemark>
-        <name>Rumah Dukuh</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            110.4464142,-7.7508874,0
-          </coordinates>
-        </Point>
       </Placemark>
     </Folder>
   </Document>
