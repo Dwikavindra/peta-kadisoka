@@ -29,9 +29,14 @@ function App() {
     rt15: true,
     rt16: true,
     rumahDukuh: true,
+    batasWilayah: false,
   });
 
-  const updatePlacemarks = (newChecked: boolean, routeName: string) => {
+  const updatePlacemarks = (
+    newChecked: boolean,
+    routeName: string,
+    json?: any
+  ) => {
     let newShownPlaceMarks;
 
     if (!newChecked) {
@@ -53,7 +58,6 @@ function App() {
         return;
       }
     }
-
     if (newShownPlaceMarks) {
       const newKMLJSON = {
         ...kmlJson,
@@ -96,19 +100,28 @@ function App() {
           } else {
             console.log("Parsed json", JSON.stringify(result));
             setPlaceMarks(result.kml.Document[0].Folder[0].Placemark);
-            setShownPlaceMarks(result.kml.Document[0].Folder[0].Placemark);
             setKmlJson(result);
+            const newResult = result;
+            const withoutKadisoka = result.kml.Document[0].Folder[0].Placemark;
+            const placeMarkWithoutKadioska = withoutKadisoka.filter(
+              (placemark: any) => placemark.name[0] !== "Kadisoka"
+            );
+            setShownPlaceMarks(placeMarkWithoutKadioska);
+            newResult.kml.Document[0].Folder[0].Placemark =
+              placeMarkWithoutKadioska;
+            const builder = new xml2js.Builder();
+            const xml = builder.buildObject(newResult);
+            const parser = new DOMParser();
+            const newKML = parser.parseFromString(xml, "text/xml");
+            setKml(newKML);
           }
         });
-        const parser = new DOMParser();
-        const kml = parser.parseFromString(kmlText, "text/xml");
-        setKml(kml);
       });
   }, []);
 
   return (
     <div key={counter} className="app-container">
-      <h1 className="title">Peta Digital Kadirojo 2</h1>
+      <h1 className="title">Peta Digital Kadisoka</h1>
       <div className="filters-container">
         <div className="filter-group">
           <h3 className="filter-title">RT</h3>
@@ -119,7 +132,7 @@ function App() {
                 checked={checked.rt1}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "RT 01");
+                  updatePlacemarks(newChecked, "RT1");
                   setChecked({ ...checked, rt1: newChecked });
                 }}
               />
@@ -131,7 +144,7 @@ function App() {
                 checked={checked.rt2}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "RT 2");
+                  updatePlacemarks(newChecked, "RT2");
                   setChecked({ ...checked, rt2: newChecked });
                 }}
               />
@@ -143,7 +156,7 @@ function App() {
                 checked={checked.rt3}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "RT 03");
+                  updatePlacemarks(newChecked, "RT3");
                   setChecked({ ...checked, rt3: newChecked });
                 }}
               />
@@ -155,7 +168,7 @@ function App() {
                 checked={checked.rt4}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "RT04");
+                  updatePlacemarks(newChecked, "RT4");
                   setChecked({ ...checked, rt4: newChecked });
                 }}
               />
@@ -167,7 +180,7 @@ function App() {
                 checked={checked.rt5}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "RT 5");
+                  updatePlacemarks(newChecked, "RT5");
                   setChecked({ ...checked, rt5: newChecked });
                 }}
               />
@@ -179,7 +192,7 @@ function App() {
                 checked={checked.rt6}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "Rt 6");
+                  updatePlacemarks(newChecked, "RT6");
                   setChecked({ ...checked, rt6: newChecked });
                 }}
               />
@@ -203,11 +216,108 @@ function App() {
                 checked={checked.rt8}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "RT 8");
+                  updatePlacemarks(newChecked, "RT8");
                   setChecked({ ...checked, rt8: newChecked });
                 }}
               />
               <label>RT 8</label>
+            </div>
+            <div className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checked.rt9}
+                onChange={(e) => {
+                  const newChecked = e.target.checked;
+                  updatePlacemarks(newChecked, "RT9");
+                  setChecked({ ...checked, rt9: newChecked });
+                }}
+              />
+              <label>RT 9</label>
+            </div>
+            <div className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checked.rt10}
+                onChange={(e) => {
+                  const newChecked = e.target.checked;
+                  updatePlacemarks(newChecked, "RT10");
+                  setChecked({ ...checked, rt10: newChecked });
+                }}
+              />
+              <label>RT 10</label>
+            </div>
+            <div className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checked.rt11}
+                onChange={(e) => {
+                  const newChecked = e.target.checked;
+                  updatePlacemarks(newChecked, "RT11");
+                  setChecked({ ...checked, rt11: newChecked });
+                }}
+              />
+              <label>RT 11</label>
+            </div>
+            <div className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checked.rt12}
+                onChange={(e) => {
+                  const newChecked = e.target.checked;
+                  updatePlacemarks(newChecked, "RT12");
+                  setChecked({ ...checked, rt12: newChecked });
+                }}
+              />
+              <label>RT 12</label>
+            </div>
+            <div className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checked.rt13}
+                onChange={(e) => {
+                  const newChecked = e.target.checked;
+                  updatePlacemarks(newChecked, "RT13");
+                  setChecked({ ...checked, rt13: newChecked });
+                }}
+              />
+              <label>RT 13</label>
+            </div>
+
+            <div className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checked.rt14}
+                onChange={(e) => {
+                  const newChecked = e.target.checked;
+                  updatePlacemarks(newChecked, "RT14");
+                  setChecked({ ...checked, rt14: newChecked });
+                }}
+              />
+              <label>RT 14</label>
+            </div>
+            <div className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checked.rt15}
+                onChange={(e) => {
+                  const newChecked = e.target.checked;
+                  updatePlacemarks(newChecked, "RT15");
+                  setChecked({ ...checked, rt15: newChecked });
+                }}
+              />
+              <label>RT 15</label>
+            </div>
+            <div className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checked.rt16}
+                onChange={(e) => {
+                  const newChecked = e.target.checked;
+                  updatePlacemarks(newChecked, "RT16");
+                  setChecked({ ...checked, rt16: newChecked });
+                }}
+              />
+              <label>RT 16</label>
             </div>
           </div>
         </div>
@@ -217,86 +327,26 @@ function App() {
             <div className="checkbox-item">
               <input
                 type="checkbox"
-                checked={checked.masjidAS}
+                checked={checked.rumahDukuh}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "Masjid Al Ashari Al Hidayah");
-                  setChecked({ ...checked, masjidAS: newChecked });
+                  updatePlacemarks(newChecked, "Rumah Dukuh");
+                  setChecked({ ...checked, rumahDukuh: newChecked });
                 }}
               />
-              <label>Masjid Al Ashari Al Hidayah</label>
+              <label>Rumah Dukuh Kadisoka</label>
             </div>
             <div className="checkbox-item">
               <input
                 type="checkbox"
-                checked={checked.makedonia}
+                checked={checked.batasWilayah}
                 onChange={(e) => {
                   const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "GKAI Makedonia");
-                  setChecked({ ...checked, makedonia: newChecked });
+                  updatePlacemarks(newChecked, "Kadisoka");
+                  setChecked({ ...checked, batasWilayah: newChecked });
                 }}
               />
-              <label>GKAI Makedonia</label>
-            </div>
-            <div className="checkbox-item">
-              <input
-                type="checkbox"
-                checked={checked.biara}
-                onChange={(e) => {
-                  const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "Biara Susteran SPC Kadirojo");
-                  setChecked({ ...checked, biara: newChecked });
-                }}
-              />
-              <label>Biara Susteran SPC Kadirojo</label>
-            </div>
-            <div className="checkbox-item">
-              <input
-                type="checkbox"
-                checked={checked.masjidFat}
-                onChange={(e) => {
-                  const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "Masjid Al Fattah");
-                  setChecked({ ...checked, masjidFat: newChecked });
-                }}
-              />
-              <label>Masjid Al Fattah</label>
-            </div>
-            <div className="checkbox-item">
-              <input
-                type="checkbox"
-                checked={checked.balai}
-                onChange={(e) => {
-                  const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "Balai Padukuhan Kadirojo 2");
-                  setChecked({ ...checked, balai: newChecked });
-                }}
-              />
-              <label>Balai Padukuhan Kadirojo 2</label>
-            </div>
-            <div className="checkbox-item">
-              <input
-                type="checkbox"
-                checked={checked.rumahPakDukuh}
-                onChange={(e) => {
-                  const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "Rumah Pak Dukuh Kadirojo 2");
-                  setChecked({ ...checked, rumahPakDukuh: newChecked });
-                }}
-              />
-              <label>Rumah Pak Dukuh Kadirojo 2</label>
-            </div>
-            <div className="checkbox-item">
-              <input
-                type="checkbox"
-                checked={checked.tandaWilayah}
-                onChange={(e) => {
-                  const newChecked = e.target.checked;
-                  updatePlacemarks(newChecked, "Tanda Wilayah");
-                  setChecked({ ...checked, tandaWilayah: newChecked });
-                }}
-              />
-              <label>Gapura Tanda Wilayah Kadirojo 2</label>
+              <label>Batas Wilayah</label>
             </div>
           </div>
         </div>
@@ -305,7 +355,7 @@ function App() {
         className="map-container"
         zoom={15}
         z
-        center={[-7.767533, 110.44855]}
+        center={[-7.75317, 110.44477]}
         key={kml}
       >
         <TileLayer
