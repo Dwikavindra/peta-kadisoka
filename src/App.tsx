@@ -32,11 +32,7 @@ function App() {
     batasWilayah: false,
   });
 
-  const updatePlacemarks = (
-    newChecked: boolean,
-    routeName: string,
-    json?: any
-  ) => {
+  const updatePlacemarks = (newChecked: boolean, routeName: string) => {
     let newShownPlaceMarks;
 
     if (!newChecked) {
@@ -353,10 +349,9 @@ function App() {
       </div>
       <MapContainer
         className="map-container"
-        zoom={15}
-        z
-        center={[-7.75317, 110.44477]}
         key={kml}
+        zoom={15}
+        center={[-7.75317, 110.44477]}
       >
         <TileLayer
           key={counter}
