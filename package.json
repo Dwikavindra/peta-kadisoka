@@ -1,0 +1,41 @@
+{
+  "name": "kadirojo2",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mapbox/togeojson": "^0.16.2",
+    "@rollup/plugin-inject": "^5.0.5",
+    "leaflet": "^1.9.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-kml": "^2.1.2",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/xml2js": "^0.4.14",
+    "@vitejs/plugin-react": "^4.3.1",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "eslint": "^9.8.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "events": "^3.3.0",
+    "globals": "^15.9.0",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.0",
+    "util": "^0.12.5",
+    "vite": "^5.4.0"
+  }
+}
